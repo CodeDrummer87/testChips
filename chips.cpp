@@ -9,6 +9,12 @@
 
 using namespace std;
 
+struct Chip
+{
+	int value_;
+	bool isUsed;
+}
+
 int main()
 {
 	SetConsoleCP(1251);

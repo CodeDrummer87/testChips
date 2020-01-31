@@ -56,6 +56,18 @@ int main()
 	Player* player = new Player(true);
 	Player* enemy = new Player(false);
 
+	system("cls");
+
+	int round, playerChoice, enemyChoice;
+	round = playerChoice = enemyChoice = 0;
+
+	srand(time(NULL));
+
+	while(round > 6)
+	{
+
+	}
+
 	_getch();
 	return 0;
 }

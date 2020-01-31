@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <conio.h>
 
 #include <ctime>
@@ -6,6 +6,8 @@
 
 #include <windows.h>
 #include <iomanip>
+
+#include <string>
 
 using namespace std;
 
@@ -25,9 +27,15 @@ private:
 	int score;
 public:
 	//.:: Constructor
-	Player(string Name) : score(0)
+	Player(bool player) : score(0)
 	{
-		name = Name;
+		if(player)
+		{
+			cout << ".:: Введите своё имя: ";
+			cin >> name;
+		}
+		else
+			name = "ИИ";
 		for (int i = 0; i < MAX; i++)
 		{
 			stack[i].value_ = i + 1;
@@ -40,6 +48,9 @@ int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+
+	Player* player = new Player(true);
+	Player* enemy = new Player(false);
 
 	_getch();
 	return 0;

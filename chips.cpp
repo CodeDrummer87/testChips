@@ -44,6 +44,8 @@ public:
 	}
 };
 
+void charline(char = '-', int = 80);
+//////////////////////////////////////////////////////
 int main()
 {
 	SetConsoleCP(1251);
@@ -54,4 +56,12 @@ int main()
 
 	_getch();
 	return 0;
+}
+
+//.:: charline() :::::::::::::::::::::::::::::::::::::
+void charline(char ch, int n)
+{
+	for (int i = 0; i < n; i++)
+		cout << ch;
+	cout << endl;
 }

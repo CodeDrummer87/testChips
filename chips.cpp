@@ -9,11 +9,32 @@
 
 using namespace std;
 
+const int MAX = 6;
+
 struct Chip
 {
 	int value_;
 	bool isUsed;
-}
+};
+
+class Player
+{
+private:
+	string name;
+	Chip stack[MAX];
+	int score;
+public:
+	//.:: Constructor
+	Player(string Name) : score(0)
+	{
+		name = Name;
+		for (int i = 0; i < MAX; i++)
+		{
+			stack[i].value_ = i + 1;
+			stack[i].isUsed = false;
+		}
+	}
+};
 
 int main()
 {

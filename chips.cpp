@@ -48,6 +48,8 @@ void charline(char = '-', int = 80);
 //////////////////////////////////////////////////////
 int main()
 {
+	system("mode con cols=80 lines=25");
+
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 

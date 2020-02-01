@@ -1,3 +1,4 @@
 #.:: not essentials files
 
 *.obj
+*.exe

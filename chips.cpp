@@ -133,8 +133,6 @@ int main()
 
 	while(round < 6)
 	{
-		system("cls");
-
 		cout << setw(75) << ".:: раунд " << ++round << endl;
 		playerChoice = player -> GetValue(true);
 		enemyChoice = enemy -> GetValue(false);
@@ -147,7 +145,7 @@ int main()
 		else if (playerChoice < enemyChoice)
 		{
 			enemy->FetchScores(playerChoice, enemyChoice);
-			cout << ".:: Фишка противника больше. Суума очков (" << playerChoice + enemyChoice << ") достаётся ему!" << endl;
+			cout << ".:: Фишка противника больше. Сумма очков (" << playerChoice + enemyChoice << ") достаётся ему!" << endl;
 		}
 		else
 		{
@@ -159,8 +157,33 @@ int main()
 
 		charline();
 		cout << setw(55) << ".:: Нажмите любую клавишу ::." << endl;
+
 		_getch();
+		system("cls");
 	}
+	system("mode con cols=80 lines=10");
+
+	charline('*');
+
+	if(player -> GetScore() > enemy ->GetScore())
+	{
+		cout << setw(50) << "Вы выиграли!" << endl;
+	}
+	else if(player -> GetScore() < enemy ->GetScore())
+	{
+		cout << setw(50) << "Вы проиграли..." << endl;
+	}
+	else
+	{
+		cout << setw(45) << "Ничья!" << endl;
+	}
+
+	charline('*');
+	cout << setw(50) << ".:: Конец игры ::." << endl;
+
+	delete player, enemy;
+
+	cout << endl << endl << setw(80) << "Andrey Bodrov C++ code, Omsk 2020";
 
 	_getch();
 	return 0;

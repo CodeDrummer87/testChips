@@ -47,6 +47,8 @@ public:
 	void ShowAvailableChips();
 	bool CheckChipValue(int, bool);
 	void FetchScores(int, int);
+	string GetPlayerName() { return name; }
+	int GetScore() { return score; }
 };
 //////////////////////////////////////////////////////
 bool Player:: CheckChipValue(int choice, bool player)
@@ -124,8 +126,6 @@ int main()
 	Player* player = new Player(true);
 	Player* enemy = new Player(false);
 
-	system("cls");
-
 	int round, playerChoice, enemyChoice;
 	round = playerChoice = enemyChoice = 0;
 
@@ -133,6 +133,8 @@ int main()
 
 	while(round < 6)
 	{
+		system("cls");
+
 		cout << setw(75) << ".:: раунд " << ++round << endl;
 		playerChoice = player -> GetValue(true);
 		enemyChoice = enemy -> GetValue(false);
@@ -140,19 +142,24 @@ int main()
 		if (playerChoice > enemyChoice)
 		{
 			player->FetchScores(playerChoice, enemyChoice);
+			cout << ".:: Ваша фишка больше, сумма очков (" << playerChoice + enemyChoice << ") достаётся Вам!" << endl;
 		}
 		else if (playerChoice < enemyChoice)
 		{
 			enemy->FetchScores(playerChoice, enemyChoice);
+			cout << ".:: Фишка противника больше. Суума очков (" << playerChoice + enemyChoice << ") достаётся ему!" << endl;
 		}
 		else
 		{
 			cout << ".:: Фишки равны. Очки никому не достались..." << endl;
 		}
 		
-
+		cout  << endl << setw(20) << player->GetPlayerName() << ": " << playerChoice << setw(30) << "AI: " << enemyChoice <<  endl << endl;
+		cout << setw(23) << "Счёт: " << player->GetScore() << setw(30) << "Счёт: " << enemy->GetScore() << endl << endl;
 
 		charline();
+		cout << setw(55) << ".:: Нажмите любую клавишу ::." << endl;
+		_getch();
 	}
 
 	_getch();

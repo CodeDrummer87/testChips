@@ -46,6 +46,7 @@ public:
 	int GetValue(bool);
 	void ShowAvailableChips();
 	bool CheckChipValue(int, bool);
+	void FetchScores(int, int);
 };
 //////////////////////////////////////////////////////
 bool Player:: CheckChipValue(int choice, bool player)
@@ -79,7 +80,7 @@ void Player:: ShowAvailableChips()
 	cout << "]: ";
 }
 //----------------------------------------------------
-int Player::GetValue(bool player)
+int Player:: GetValue(bool player)
 {
 	int choice = 0;
 	if(player)
@@ -106,6 +107,11 @@ int Player::GetValue(bool player)
 	return choice;
 }
 //----------------------------------------------------
+void Player:: FetchScores(int playerScore, int enemyScore)
+{
+	score += playerScore + enemyScore;
+}
+//----------------------------------------------------
 void charline(char = '-', int = 80);
 //////////////////////////////////////////////////////
 int main()
@@ -130,6 +136,23 @@ int main()
 		cout << setw(75) << ".:: раунд " << ++round << endl;
 		playerChoice = player -> GetValue(true);
 		enemyChoice = enemy -> GetValue(false);
+
+		if (playerChoice > enemyChoice)
+		{
+			player->FetchScores(playerChoice, enemyChoice);
+		}
+		else if (playerChoice < enemyChoice)
+		{
+			enemy->FetchScores(playerChoice, enemyChoice);
+		}
+		else
+		{
+			cout << ".:: Фишки равны. Очки никому не достались..." << endl;
+		}
+		
+
+
+		charline();
 	}
 
 	_getch();

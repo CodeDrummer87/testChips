@@ -49,24 +49,17 @@ public:
 	void FetchScores(int, int);
 	string GetPlayerName() { return name; }
 	int GetScore() { return score; }
+	bool CheckUserInput(char,int&);
 };
 //////////////////////////////////////////////////////
 bool Player:: CheckChipValue(int choice, bool player)
 {
-	if(choice > 0 && choice < 7)
-	{
-		if(!stack[choice - 1].isUsed_)
-			return true;
-		else
-		{
-			if(player)
-				cout << ".:: Фишка была использована ранее!" << endl;
-			return false;
-		}
-	}
+	if(!stack[choice - 1].isUsed_)
+		return true;
 	else
 	{
-		cout << ".:: Такой фишки не существует!" << endl;
+		if(player)
+			cout << ".:: Фишка была использована ранее!" << endl;
 		return false;
 	}
 }
@@ -91,9 +84,11 @@ int Player:: GetValue(bool player)
 		{
 			cout << ".:: Выберите фишку из доступных ";
 			ShowAvailableChips();
-			cin >> choice;
-			if(CheckChipValue(choice, true))
-				break;
+			char ch = 'a';
+			cin >> ch;
+			if(CheckUserInput(ch, choice))
+				if(CheckChipValue(choice, true))
+					break;
 		}
 	}
 	else
@@ -112,6 +107,22 @@ int Player:: GetValue(bool player)
 void Player:: FetchScores(int playerScore, int enemyScore)
 {
 	score += playerScore + enemyScore;
+}
+//----------------------------------------------------
+bool Player:: CheckUserInput(char input, int& value)
+{
+	switch(input)
+	{
+	case '1': value = 1; return true;
+	case '2': value = 2; return true;
+	case '3': value = 3; return true;
+	case '4': value = 4; return true;
+	case '5': value = 5; return true;
+	case '6': value = 6; return true;
+	default: 
+		cout << ".:: Выбирать следует из доступных вариантов!" << endl;
+		value = 0; return false;
+	}
 }
 //----------------------------------------------------
 void charline(char = '-', int = 80);
